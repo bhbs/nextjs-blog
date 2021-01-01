@@ -1,3 +1,3 @@
 👀 Check it out!
 
-[blog.mimaty.com](blog.mimaty.com)
+[blog.mimaty.com](https://blog.mimaty.com)
