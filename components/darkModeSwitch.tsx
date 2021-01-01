@@ -31,7 +31,7 @@ const DarkModeSwitch = () => {
       className={darkMode ? "darkMode" : ""}
       onClick={() => toggleMode(!darkMode)}
       style={{
-        padding: "12px",
+        padding: "8px",
         marginBottom: "24px",
         borderRadius: "240px 16px 128px 16px / 16px 200px 16px 192px",
         boxShadow: "4px 4px rgba(0,0,0,.6)",
