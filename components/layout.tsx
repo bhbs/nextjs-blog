@@ -69,6 +69,12 @@ const Layout = ({
           </Link>
         </div>
       )}
+      <footer className={styles.footer}>
+        <p>
+          source: <a href="https://github.com/bhbs/nextjs-blog">GitHub</a>
+          <br />© 2021 taisei mima
+        </p>
+      </footer>
     </div>
   );
 };
