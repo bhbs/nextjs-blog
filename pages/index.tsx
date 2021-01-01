@@ -14,6 +14,9 @@ export default function Home({ allPostsData }) {
       </Head>
       <section className={utilStyles.headingMd}>
         <p style={{ textAlign: "center" }}>Write Code Every Day</p>
+        <p style={{ textAlign: "center" }}>
+          <img src="https://grass-graph.moshimo.works/images/bhbs.png" />
+        </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
