@@ -8,6 +8,16 @@ body {
   font-size: 18px;
 }
 
+body {
+  color: black;
+  background: white;
+
+  &.darkMode {
+    color: white;
+    background: black;
+  }
+}
+
 * {
   box-sizing: border-box;
 }

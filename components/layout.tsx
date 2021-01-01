@@ -2,17 +2,18 @@ import Head from "next/head";
 import styles from "./layout.module.scss";
 import utilStyles from "../styles/utils.module.scss";
 import Link from "next/link";
+import DarkModeSwitch from "../components/darkModeSwitch";
 
 const name = "taisei mima";
 export const siteTitle = "mimaty blog";
 
-export default function Layout({
+const Layout = ({
   children,
   home,
 }: {
   children: React.ReactNode;
   home?: boolean;
-}) {
+}) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -30,6 +31,7 @@ export default function Layout({
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
+      <DarkModeSwitch />
       <header className={styles.header}>
         {home ? (
           <>
@@ -69,4 +71,6 @@ export default function Layout({
       )}
     </div>
   );
-}
+};
+
+export default Layout;
