@@ -34,6 +34,7 @@ const DarkModeSwitch = () => {
         padding: "12px",
         marginBottom: "24px",
         borderRadius: "240px 16px 128px 16px / 16px 200px 16px 192px",
+        boxShadow: "4px 4px rgba(0,0,0,.6)",
         background: darkMode ? "white" : "black",
         color: darkMode ? "black" : "white",
         fontSize: ".8em",

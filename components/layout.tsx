@@ -37,7 +37,7 @@ const Layout = ({
           <>
             <img
               src="/images/profile.jpg"
-              className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
+              className={`${styles.headerHomeImage} ${utilStyles.borderPaper}`}
               alt={name}
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
@@ -48,7 +48,7 @@ const Layout = ({
               <a>
                 <img
                   src="/images/profile.jpg"
-                  className={`${styles.headerImage} ${utilStyles.borderCircle}`}
+                  className={`${styles.headerImage} ${utilStyles.borderPaper}`}
                   alt={name}
                 />
               </a>
