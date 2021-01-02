@@ -1,11 +1,9 @@
 const ImgPlaceHolder = ({
+  children,
   aspectRatio,
-  src,
-  alt,
 }: {
+  children: React.ReactNode;
   aspectRatio: number;
-  src: string;
-  alt: string;
 }) => {
   return (
     <div
@@ -17,16 +15,16 @@ const ImgPlaceHolder = ({
         paddingTop: 100 * aspectRatio + "%",
       }}
     >
-      <img
+      <div
         style={{
           position: "absolute",
           top: "0",
           left: "0",
           width: "100%",
         }}
-        src={src}
-        alt={alt}
-      />
+      >
+        {children}
+      </div>
     </div>
   );
 };

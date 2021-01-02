@@ -3,6 +3,7 @@ import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.scss";
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
+import Image from "next/image";
 import Date from "../components/date";
 import ImgPlaceHolder from "../components/imgPlaceHolder";
 import { GetStaticProps } from "next";
@@ -15,11 +16,14 @@ export default function Home({ allPostsData }) {
       </Head>
       <section className={utilStyles.headingMd}>
         <p style={{ textAlign: "center" }}>Write Code Every Day</p>
-        <ImgPlaceHolder
-          aspectRatio={155 / 870}
-          src="https://grass-graph.moshimo.works/images/bhbs.png"
-          alt="GitHub grasses"
-        />
+        <ImgPlaceHolder aspectRatio={155 / 870}>
+          <Image
+            width={870}
+            height={155}
+            src="https://grass-graph.moshimo.works/images/bhbs.png"
+            alt="GitHub grasses"
+          ></Image>
+        </ImgPlaceHolder>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
