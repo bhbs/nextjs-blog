@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "./layout.module.scss";
 import utilStyles from "../styles/utils.module.scss";
 import Link from "next/link";
+import Image from "next/image";
 import DarkModeSwitch from "../components/darkModeSwitch";
 
 const name = "taisei mima";
@@ -35,22 +36,26 @@ const Layout = ({
       <header className={styles.header}>
         {home ? (
           <>
-            <img
+            <Image
               src="/images/profile.jpg"
+              width={200}
+              height={200}
               className={`${styles.headerHomeImage} ${utilStyles.borderPaper}`}
               alt={name}
-            />
+            ></Image>
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
         ) : (
           <>
             <Link href="/">
               <a>
-                <img
+                <Image
                   src="/images/profile.jpg"
-                  className={`${styles.headerImage} ${utilStyles.borderPaper}`}
+                  width={128}
+                  height={128}
+                  className={`${styles.headerHomeImage} ${utilStyles.borderPaper}`}
                   alt={name}
-                />
+                ></Image>
               </a>
             </Link>
             <h2 className={utilStyles.headingLg}>
