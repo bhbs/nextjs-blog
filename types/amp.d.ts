@@ -1,22 +1,11 @@
 declare namespace JSX {
-  interface AmpImg {
-    alt?: string;
-    src?: string;
-    width?: string;
-    height?: string;
-    layout?: string;
-  }
-  interface AmpCarousel {
-    children?: Element[];
-    width?: string;
-    height?: string;
-    layout?: string;
-    type?: string;
-    role?: string;
-    // aria-label?: string;
-  }
   interface IntrinsicElements {
-    "amp-img": AmpImg;
-    "amp-carousel": AmpCarousel;
+    "amp-img": any;
+    "amp-video": any;
+    "amp-carousel": any;
+    "amp-story": any;
+    "amp-story-page": any;
+    "amp-story-grid-layer": any;
+    "amp-story-bookend": any;
   }
 }
