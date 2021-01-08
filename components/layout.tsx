@@ -4,6 +4,7 @@ import utilStyles from "../styles/utils.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import DarkModeSwitch from "../components/darkModeSwitch";
+import { existsGaId, GA_ID } from "../lib/gtag";
 
 const name = "taisei mima";
 export const siteTitle = "mimaty blog";
@@ -31,6 +32,28 @@ const Layout = ({
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
+
+        {/* Google Analytics */}
+        {existsGaId && (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${GA_ID}', {
+                      page_path: window.location.pathname,
+                    });
+                  `,
+              }}
+            />
+          </>
+        )}
       </Head>
       <DarkModeSwitch />
       <header className={styles.header}>
