@@ -1,10 +1,11 @@
+import React from "react";
 import Head from "next/head";
 
 export const config = {
   amp: true,
 };
 
-const Normal = () => {
+const Normal: React.FC = (): React.ReactElement => {
   return (
     <>
       <Head>

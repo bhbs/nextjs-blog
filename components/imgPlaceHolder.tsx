@@ -1,10 +1,14 @@
-const ImgPlaceHolder = ({
-  children,
-  aspectRatio,
-}: {
+import React from "react";
+
+type Props = {
   children: React.ReactNode;
   aspectRatio: number;
-}) => {
+};
+
+const ImgPlaceHolder: React.FC<Props> = ({
+  children,
+  aspectRatio,
+}: Props): React.ReactElement => {
   return (
     <div
       style={{

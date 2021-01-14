@@ -1,3 +1,4 @@
+import React from "react";
 import Head from "next/head";
 import styles from "./layout.module.scss";
 import utilStyles from "../styles/utils.module.scss";
@@ -9,13 +10,15 @@ import { existsGaId, GA_ID } from "../lib/gtag";
 const name = "taisei mima";
 export const siteTitle = "mimaty blog";
 
-const Layout = ({
-  children,
-  home,
-}: {
+type Props = {
   children: React.ReactNode;
   home?: boolean;
-}) => {
+};
+
+const Layout: React.FC<Props> = ({
+  children,
+  home,
+}: Props): React.ReactElement => {
   return (
     <div className={styles.container}>
       <Head>

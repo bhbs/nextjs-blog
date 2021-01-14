@@ -1,16 +1,17 @@
-import { AppProps } from "next/dist/next-server/lib/router/router";
+import React from "react";
+import { AppProps, NextRouter } from "next/dist/next-server/lib/router/router";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import * as gtag from "../lib/gtag";
 import "../styles/global.scss";
 
-function App({ Component, pageProps }: AppProps) {
-  const router = useRouter();
+const App: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
+  const router: NextRouter = useRouter();
 
   useEffect(() => {
     if (!gtag.existsGaId) return;
 
-    const handleRouteChange = (path) => {
+    const handleRouteChange = (path: string): void => {
       gtag.pageview(path);
     };
 
@@ -21,6 +22,6 @@ function App({ Component, pageProps }: AppProps) {
   }, [router.events]);
 
   return <Component {...pageProps} />;
-}
+};
 
 export default App;

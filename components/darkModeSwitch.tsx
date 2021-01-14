@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const DarkModeSwitch = () => {
+const DarkModeSwitch: React.FC = (): React.ReactElement => {
   const [darkMode, toggleMode] = useState(false);
   useEffect(() => {
     if (

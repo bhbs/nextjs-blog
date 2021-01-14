@@ -1,7 +1,8 @@
+import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class D extends Document {
-  render() {
+  render(): React.ReactElement {
     return (
       <Html lang="ja">
         <Head />
