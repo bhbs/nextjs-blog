@@ -1,13 +1,13 @@
-import React from "react";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
-import utilStyles from "../styles/utils.module.scss";
-import { AllPostsData, getSortedPostsData } from "../lib/posts";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 import Date from "../components/date";
 import ImgPlaceHolder from "../components/imgPlaceHolder";
-import { GetStaticProps, GetStaticPropsResult } from "next";
+import Layout, { siteTitle } from "../components/layout";
+import { AllPostsData, getSortedPostsData } from "../lib/posts";
+import utilStyles from "../styles/utils.module.scss";
 
 type Props = {
   allPostsData: AllPostsData;

@@ -1,7 +1,6 @@
-import React from "react";
 import { AppProps, NextRouter } from "next/dist/next-server/lib/router/router";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import * as gtag from "../lib/gtag";
 import "../styles/global.scss";
 

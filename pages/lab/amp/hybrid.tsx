@@ -1,5 +1,6 @@
-import React from "react";
 import { useAmp } from "next/amp";
+import React from "react";
+
 export const config = {
   amp: "hybrid",
 };

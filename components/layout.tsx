@@ -1,11 +1,11 @@
-import React from "react";
 import Head from "next/head";
-import styles from "./layout.module.scss";
-import utilStyles from "../styles/utils.module.scss";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 import DarkModeSwitch from "../components/darkModeSwitch";
 import { existsGaId, GA_ID } from "../lib/gtag";
+import utilStyles from "../styles/utils.module.scss";
+import styles from "./layout.module.scss";
 
 const name = "taisei mima";
 export const siteTitle = "mimaty blog";
