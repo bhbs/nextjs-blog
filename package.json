@@ -9,9 +9,11 @@
     "sitemap": "next build && node lib/sitemap"
   },
   "dependencies": {
+    "@types/nodemailer": "^6.4.0",
     "date-fns": "^2.16.1",
     "gray-matter": "^4.0.2",
     "next": "^10.0.5",
+    "nodemailer": "^6.4.17",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "remark": "^13.0.0",
