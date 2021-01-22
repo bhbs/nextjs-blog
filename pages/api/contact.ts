@@ -1,19 +1,44 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import * as nodemailer from "nodemailer";
 
+type Verification = {
+  success?: true | false;
+  challenge_ts?: string;
+  hostname?: string;
+  "error-codes"?: string[];
+};
+
+type Info = {
+  token?: string;
+  title?: string;
+  message?: string;
+};
+
 export default async (
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> => {
   const info = JSON.parse(req.body);
-
-  info.token ? await sendText(info) : false;
-  res.status(200).json(info || "😀");
+  if (info.token) {
+    const verification = await siteVerify(info.token);
+    verification.success && sendText(info);
+    res.status(200).json("YOU'VE SENT AN EMAIL.");
+  } else {
+    res.status(200).json("BOT?🤖");
+  }
 };
 
-const sendText = async (params: {
-  [key: string]: string | string[];
-}): Promise<nodemailer.SentMessageInfo> => {
+const siteVerify = async (token): Promise<Verification> =>
+  await fetch("https://www.google.com/recaptcha/api/siteverify", {
+    method: "POST",
+    headers: { "Content-type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      secret: process.env.RECAPCHA_SITEKEY_SECRET,
+      response: token,
+    }).toString(),
+  }).then((response) => response.json());
+
+const sendText = async (info: Info): Promise<nodemailer.SentMessageInfo> => {
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -27,7 +52,7 @@ const sendText = async (params: {
   return await transporter.sendMail({
     from: '"dancingbumpkin"<dancingbumpkin@gmail.com>',
     to: "dancingbumpkin@gmail.com",
-    subject: "from api",
-    text: JSON.stringify(params.text),
+    subject: info.title,
+    text: info.message,
   });
 };

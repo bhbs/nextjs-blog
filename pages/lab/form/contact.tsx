@@ -17,21 +17,41 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    executeRecaptcha("contact_page").then(async (token) => {
+    executeRecaptcha("contact").then(async (token) => {
       await fetch("/api/contact", {
         method: "POST",
-        body: JSON.stringify({ text: e.target.tex.value, token }),
+        body: JSON.stringify({
+          title: e.target.title.value,
+          message: e.target.message.value,
+          token,
+        }),
       });
+      alert("done🙆🏻‍♂️");
     });
   };
 
   return (
-    <>
+    <div
+      style={{
+        width: "320px",
+        margin: "32px auto",
+        padding: "16px",
+        textAlign: "center",
+        boxShadow: "1px 1px 4px #ccc",
+      }}
+    >
       <form onSubmit={handleSubmit}>
-        <input name="tex" type="text" />
-        <button>submit</button>
+        <p>
+          <input name="title" type="text" placeholder="title" />
+        </p>
+        <p>
+          <input name="message" type="text" placeholder="message" />
+        </p>
+        <p>
+          <button>submit</button>
+        </p>
       </form>
-    </>
+    </div>
   );
 };
 
