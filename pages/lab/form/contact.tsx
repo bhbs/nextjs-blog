@@ -18,15 +18,15 @@ const Contact: React.FC = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     executeRecaptcha("contact").then(async (token) => {
-      await fetch("/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         body: JSON.stringify({
           title: e.target.title.value,
           message: e.target.message.value,
           token,
         }),
-      });
-      alert("done🙆🏻‍♂️");
+      }).then((response) => response.text());
+      alert(response);
     });
   };
 

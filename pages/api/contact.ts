@@ -21,7 +21,7 @@ export default async (
   const info = JSON.parse(req.body);
   if (info.token) {
     const verification = await siteVerify(info.token);
-    verification.success && sendText(info);
+    verification.success && (await sendText(info));
     res.status(200).json("YOU'VE SENT AN EMAIL.");
   } else {
     res.status(200).json("BOT?🤖");
