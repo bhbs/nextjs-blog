@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import checkGame from "./checkGame";
+import React, { useEffect, useState } from "react";
+import checkGame from "../../../../lib/lab/game/checkGame";
 import styles from "./index.module.scss";
+import Layout from "../../../../components/lab/game/layout";
+import { database } from "../../../../lib/lab/game/firebase";
 
 export type GameData = {
   board: Board;
@@ -9,7 +11,7 @@ export type GameData = {
   winner: Winner;
 };
 export type Player = 1 | 2;
-export type Winner = string;
+export type Winner = 0 | Player | 3;
 
 export type Board = [Row, Row, Row];
 export type Row = [Cell, Cell, Cell];
@@ -34,8 +36,15 @@ const Game: React.FC = () => {
     board: initBoard,
     unselectable: initBoard,
     player: 1,
-    winner: "",
+    winner: 0,
   });
+
+  useEffect(() => {
+    database.ref("global").on("value", (snapshot) => {
+      const data = snapshot.val();
+      setGameData(data);
+    });
+  }, []);
 
   const calcNewBoard = (
     board: Board,
@@ -71,7 +80,7 @@ const Game: React.FC = () => {
     const player = ((gameData.player % 2) + 1) as Player;
     const winner = checkGame(board);
 
-    setGameData({
+    pushGameData({
       board,
       unselectable,
       player,
@@ -80,7 +89,7 @@ const Game: React.FC = () => {
   };
 
   const resetGame = () => {
-    setGameData({
+    pushGameData({
       board: [
         [0, 0, 0],
         [0, 0, 0],
@@ -92,23 +101,43 @@ const Game: React.FC = () => {
         [0, 0, 0],
       ],
       player: 1,
-      winner: "",
+      winner: 0,
     });
   };
 
+  const pushGameData = async (gameData: GameData): Promise<void> => {
+    try {
+      await database.ref("global").set(gameData);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
-    <div className={styles.board}>
-      {gameData.winner ? (
-        <>
-          <p>{gameData.winner}</p>
-          <p>
-            <button onClick={resetGame}>CONTINUE</button>
-          </p>
-        </>
-      ) : (
-        <GameBoard board={gameData.board} handleClick={handleClick} />
-      )}
-    </div>
+    <Layout>
+      <div className={styles.board}>
+        {gameData.winner ? (
+          <>
+            {gameData.winner === 1 && (
+              <p>
+                <span style={{ color: "red" }}>■</span> WIN
+              </p>
+            )}
+            {gameData.winner === 2 && (
+              <p>
+                <span style={{ color: "blue" }}>■</span> WIN
+              </p>
+            )}
+            {gameData.winner === 3 && <p>DRAW</p>}
+            <p>
+              <button onClick={resetGame}>CONTINUE</button>
+            </p>
+          </>
+        ) : (
+          <GameBoard board={gameData.board} handleClick={handleClick} />
+        )}
+      </div>
+    </Layout>
   );
 };
 
