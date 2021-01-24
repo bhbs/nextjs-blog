@@ -17,6 +17,8 @@ export type GameData = {
 export type Player = 1 | 2;
 export type Winner = 0 | Player | 3;
 
+type GameDataHistory = GameData[];
+
 export type Board = Row[];
 export type Row = Cell[];
 export type Cell = 0 | 1 | 2;
@@ -30,8 +32,8 @@ const initBoard: Board = [
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 2, 0, 0, 0],
-  [0, 0, 0, 2, 1, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
@@ -48,12 +50,24 @@ const Game: React.FC = () => {
     winner: 0,
   });
 
+  const [gameDataHistory, setGameDataHistory]: [
+    GameDataHistory,
+    React.Dispatch<React.SetStateAction<GameDataHistory>>
+  ] = useState([]);
+
   useEffect(() => {
     database.ref("reversi").on("value", (snapshot) => {
       const data = snapshot.val();
       setGameData(data);
     });
   }, []);
+
+  useEffect(() => {
+    setGameDataHistory([
+      ...gameDataHistory,
+      JSON.parse(JSON.stringify(gameData)),
+    ]);
+  }, [gameData]);
 
   const handleClick = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     const target = e.target as HTMLElement;
@@ -77,31 +91,27 @@ const Game: React.FC = () => {
     });
   };
 
+  const backHistory = () => {
+    if (gameDataHistory.length <= 2) return;
+
+    setGameDataHistory(gameDataHistory.slice(0, -2));
+    pushGameData(gameDataHistory.slice(-2)[0]);
+  };
+
   const resetGame = () => {
+    const board: Board = [
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 1, 2, 0, 0, 0],
+      [0, 0, 0, 2, 1, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0],
+    ];
     pushGameData({
-      board: [
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 1, 2, 0, 0, 0],
-        [0, 0, 0, 2, 1, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-      ],
-      reversible: getReversibleCells(
-        [
-          [0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 1, 2, 0, 0, 0],
-          [0, 0, 0, 2, 1, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0],
-        ],
-        1
-      ),
+      board,
+      reversible: getReversibleCells(board, 1),
       player: 1,
       winner: 0,
     });
@@ -135,6 +145,7 @@ const Game: React.FC = () => {
         )}
         {gameData.winner === 3 && <p>DRAW</p>}
         <p>
+          <button onClick={backHistory}>←</button>
           <button onClick={resetGame}>CONTINUE</button>
         </p>
       </div>
