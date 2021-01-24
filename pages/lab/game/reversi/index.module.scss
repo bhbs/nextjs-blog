@@ -1,26 +1,26 @@
 .board {
-  margin: 36px auto;
-  padding: 16px;
+  margin: 0;
+  min-height: 100vh;
+  padding: 60px 0;
   text-align: center;
+  background-color: #e0e0e0;
 
   p {
     font-size: 24px;
     font-weight: bold;
-    color: #999;
     letter-spacing: 4px;
 
     button {
       font-size: 24px;
       font-weight: bold;
-      color: white;
+      color: #999;
+      background-color: #e0e0e0;
       letter-spacing: 4px;
-      background-color: #999;
       border: none;
       cursor: pointer;
       outline: none;
       padding: 8px 24px;
       appearance: none;
-      box-shadow: 1px 1px 4px #ccc;
       border-radius: 8px;
       margin: 8px;
     }
@@ -28,10 +28,49 @@
 }
 .cell {
   display: inline-block;
-  margin: 4px;
-  width: 36px;
-  height: 36px;
+  margin: 2px;
+  width: 32px;
+  height: 32px;
   cursor: pointer;
-  box-shadow: 1px 1px 4px #ccc;
-  border-radius: 8px;
+  border-radius: 6px;
+}
+
+$shadow-deko: 3px 3px 6px 0 rgba(0, 0, 0, 0.2),
+  -3px -3px 6px 0 rgba(255, 255, 255, 0.5);
+
+$shadow-boko: inset 1.5px 1.5px 2.5px 0 rgba(0, 0, 0, 0.2),
+  inset -1.5px -1.5px 2.5px 0 rgba(255, 255, 255, 0.5);
+
+.deko {
+  box-shadow: $shadow-boko;
+  animation: bokodeko 1s ease-in-out forwards;
+}
+
+.boko {
+  box-shadow: $shadow-deko;
+  animation: dekoboko 1s ease-in-out forwards;
+}
+
+@keyframes dekoboko {
+  0% {
+    box-shadow: $shadow-deko;
+  }
+  50% {
+    box-shadow: none;
+  }
+  100% {
+    box-shadow: $shadow-boko;
+  }
+}
+
+@keyframes bokodeko {
+  0% {
+    box-shadow: $shadow-boko;
+  }
+  50% {
+    box-shadow: none;
+  }
+  100% {
+    box-shadow: $shadow-deko;
+  }
 }

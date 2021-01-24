@@ -39,6 +39,9 @@ const initBoard: Board = [
   [0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
+const red = "gray";
+const blue = "white";
+
 const Game: React.FC = () => {
   const [gameData, setGameData]: [
     GameData,
@@ -135,18 +138,22 @@ const Game: React.FC = () => {
         />
         {gameData.winner === 1 && (
           <p>
-            <span style={{ color: "red" }}>■</span> WIN
+            <span style={{ color: red }}>■</span> WIN
           </p>
         )}
         {gameData.winner === 2 && (
           <p>
-            <span style={{ color: "blue" }}>■</span> WIN
+            <span style={{ color: blue }}>■</span> WIN
           </p>
         )}
         {gameData.winner === 3 && <p>DRAW</p>}
         <p>
-          <button onClick={backHistory}>←</button>
-          <button onClick={resetGame}>CONTINUE</button>
+          <button className={styles.deko} onClick={backHistory}>
+            ←
+          </button>
+          <button className={styles.deko} onClick={resetGame}>
+            CONTINUE
+          </button>
         </p>
       </div>
     </Layout>
@@ -174,11 +181,11 @@ const GameBoard: React.FC<Props> = ({
               data-y={i}
               data-x={j}
               onClick={handleClick}
-              className={styles.cell}
+              className={`${styles.cell} ${
+                reversible[i][j] ? styles.deko : styles.boko
+              }`}
               style={{
-                background: reversible[i][j]
-                  ? "lightgray"
-                  : ["white", "red", "blue"][cell],
+                background: ["", red, blue][cell],
               }}
             ></span>
           ))}
