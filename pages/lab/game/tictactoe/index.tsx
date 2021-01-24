@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import checkGame from "../../../../lib/lab/game/checkGame";
+import checkGame from "../../../../lib/lab/game/tictactoe/checkGame";
 import styles from "./index.module.scss";
 import Layout from "../../../../components/lab/game/layout";
-import { database } from "../../../../lib/lab/game/firebase";
+import { database } from "../../../../lib/lab/game/tictactoe/firebase";
 
 export type GameData = {
   board: Board;

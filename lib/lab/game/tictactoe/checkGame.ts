@@ -1,4 +1,9 @@
-import { Board, Player, Row, Winner } from "../../../pages/lab/game/tictactoe";
+import {
+  Board,
+  Player,
+  Row,
+  Winner,
+} from "../../../../pages/lab/game/tictactoe";
 
 const resultDraw = 3;
 const resultContinue = 0;
