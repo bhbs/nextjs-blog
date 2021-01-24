@@ -21,6 +21,11 @@ const Lab: React.FC = (): React.ReactElement => {
             <a>game/tictactoe</a>
           </Link>
         </p>
+        <p>
+          <Link href="/lab/game/reversi">
+            <a>game/reversi</a>
+          </Link>
+        </p>
       </section>
     </Layout>
   );
