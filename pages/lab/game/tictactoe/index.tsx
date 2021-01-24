@@ -40,7 +40,7 @@ const Game: React.FC = () => {
   });
 
   useEffect(() => {
-    database.ref("global").on("value", (snapshot) => {
+    database.ref("tictactoe").on("value", (snapshot) => {
       const data = snapshot.val();
       setGameData(data);
     });
@@ -107,7 +107,7 @@ const Game: React.FC = () => {
 
   const pushGameData = async (gameData: GameData): Promise<void> => {
     try {
-      await database.ref("global").set(gameData);
+      await database.ref("tictactoe").set(gameData);
     } catch (error) {
       alert(error.message);
     }
