@@ -1,0 +1,36 @@
+.board {
+  margin: 36px auto;
+  padding: 16px;
+  text-align: center;
+
+  p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #999;
+    letter-spacing: 4px;
+
+    button {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      letter-spacing: 4px;
+      background-color: #999;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      padding: 12px 28px;
+      appearance: none;
+      box-shadow: 1px 1px 4px #ccc;
+      border-radius: 8px;
+    }
+  }
+}
+.cell {
+  display: inline-block;
+  margin: 4px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  box-shadow: 1px 1px 4px #ccc;
+  border-radius: 8px;
+}
