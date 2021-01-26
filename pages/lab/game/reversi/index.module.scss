@@ -1,27 +1,9 @@
-$backColor: #e0e0e0;
-$fontColor: #999;
-$colorPlayer1: gray;
-$colorPlayer2: white;
-
-.gray {
-  background-color: $colorPlayer1;
-}
-.white {
-  background-color: $colorPlayer2;
-}
-.boko299 {
-  background-color: $colorPlayer1;
-}
-.boko199 {
-  background-color: $colorPlayer2;
-}
-
 .board {
   margin: 0;
   min-height: 100vh;
   padding: 60px 0;
   text-align: center;
-  background-color: $backColor;
+  background-color: #e0e0e0;
 
   p {
     font-size: 24px;
@@ -31,8 +13,8 @@ $colorPlayer2: white;
     button {
       font-size: 24px;
       font-weight: bold;
-      color: $fontColor;
-      background-color: $backColor;
+      color: #999;
+      background-color: #e0e0e0;
       letter-spacing: 4px;
       border: none;
       cursor: pointer;
@@ -68,12 +50,12 @@ $shadow-boko: inset 1.5px 1.5px 2.5px 0 rgba(0, 0, 0, 0.2),
   inset -1.5px -1.5px 2.5px 0 rgba(255, 255, 255, 0.5);
 
 .deko {
-  box-shadow: $shadow-deko;
+  box-shadow: $shadow-boko;
   animation: bokodeko 1s ease-in-out forwards;
 }
 
 .boko {
-  box-shadow: $shadow-boko;
+  box-shadow: $shadow-deko;
   animation: dekoboko 1s ease-in-out forwards;
 }
 
@@ -98,55 +80,5 @@ $shadow-boko: inset 1.5px 1.5px 2.5px 0 rgba(0, 0, 0, 0.2),
   }
   100% {
     box-shadow: $shadow-deko;
-  }
-}
-
-@for $h from 1 through 2 {
-  @for $i from 0 through 7 {
-    $flag: $h * 4;
-    $deg: ($i + $flag) * 45deg;
-    $position1: 0%;
-    $position2: 0%;
-    $position3: 0%;
-    $position4: 0%;
-    @if $i >= 1 and $i <= 3 {
-      $position1: 100%;
-    }
-    @if $i >= 3 and $i <= 5 {
-      $position2: 100%;
-    }
-    @if $i >= 5 and $i <= 7 {
-      $position3: 100%;
-    }
-    @if $i >= 7 or $i <= 1 {
-      $position4: 100%;
-    }
-
-    $animaitonname: blackanimation#{$i};
-    @keyframes #{$animaitonname} {
-      0% {
-        background-position: $position1 $position2;
-      }
-      100% {
-        background-position: $position3 $position4;
-      }
-    }
-
-    @for $j from 0 through 7 {
-      $delay: $j * 0.4s;
-
-      .boko#{$h}#{$i}#{$j} {
-        box-shadow: $shadow-boko;
-        background-size: 200% 200%;
-        background-position: $position1 $position2;
-        background-image: linear-gradient(
-          $deg,
-          $colorPlayer1 50%,
-          $colorPlayer2 50%
-        );
-        animation: $animaitonname 0.4s forwards;
-        animation-delay: $delay;
-      }
-    }
   }
 }
