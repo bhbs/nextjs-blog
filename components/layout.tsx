@@ -1,9 +1,10 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import DarkModeSwitch from "../components/darkModeSwitch";
 import { existsGaId, GA_ID } from "../lib/gtag";
+import { GlobalContext } from "../pages/_app";
 import utilStyles from "../styles/utils.module.scss";
 import styles from "./layout.module.scss";
 
@@ -19,6 +20,7 @@ const Layout: React.FC<Props> = ({
   children,
   home,
 }: Props): React.ReactElement => {
+  const { global, setGlobal } = useContext(GlobalContext);
   return (
     <div className={styles.container}>
       <Head>
@@ -100,7 +102,11 @@ const Layout: React.FC<Props> = ({
       <footer className={styles.footer}>
         <p>
           source: <a href="https://github.com/bhbs/nextjs-blog">GitHub</a>
-          <br />© 2021 taisei mima
+          <br />©{" "}
+          <span onClick={() => setGlobal(global + 1)}>
+            {2021 + global}
+          </span>{" "}
+          taisei mima
         </p>
       </footer>
     </div>
