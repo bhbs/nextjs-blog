@@ -1,0 +1,10 @@
+.aspect {
+  text-align: center;
+  input {
+    height: 60px;
+
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+}
