@@ -1,31 +1,41 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import * as nodemailer from "nodemailer";
 
 export default async (
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> => {
-  const info = req.query.mail ? await sendText(req.query) : false;
-  res.status(200).json(info || { text: req.query || "mail & subject & text" });
+  const operations = `
+    query MyQuery {
+      users {
+        name
+        description
+      }
+    }
+  `;
+
+  const result = await fetchGraphQL(operations, "MyQuery", {});
+
+  res.status(200).json(result);
 };
 
-const sendText = async (params: {
-  [key: string]: string | string[];
-}): Promise<nodemailer.SentMessageInfo> => {
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: "dancingbumpkin@gmail.com",
-      pass: process.env.GMAIL_APPLICATION_PW,
-    },
-  });
+/*
+This is an example snippet - you should consider tailoring it
+to your service.
 
-  return await transporter.sendMail({
-    from: '"dancingbumpkin"<dancingbumpkin@gmail.com>',
-    to: "dancingbumpkin@gmail.com",
-    subject: JSON.stringify(params.subject),
-    text: JSON.stringify(params.text),
-  });
-};
+Note: we only handle the first operation here
+*/
+
+export async function fetchGraphQL(
+  operationsDoc: string,
+  operationName: string,
+  variables: Record<string, any>
+): Promise<any> {
+  return fetch("https://cunning-buffalo-42.hasura.app/v1/graphql", {
+    method: "POST",
+    body: JSON.stringify({
+      query: operationsDoc,
+      variables,
+      operationName,
+    }),
+  }).then((result) => result.json());
+}
