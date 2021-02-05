@@ -31,6 +31,9 @@ export async function fetchGraphQL(
   variables: Record<string, any>
 ): Promise<any> {
   return fetch("https://cunning-buffalo-42.hasura.app/v1/graphql", {
+    headers: {
+      "x-hasura-admin-secret": process.env.HASURA_ADMIN_SECRET,
+    },
     method: "POST",
     body: JSON.stringify({
       query: operationsDoc,
