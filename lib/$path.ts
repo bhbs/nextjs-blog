@@ -20,9 +20,6 @@ export const pagesPath = {
         $url: (url?: { hash?: string }) => ({ pathname: '/lab/apps/aspect' as const, hash: url?.hash })
       }
     },
-    dbs: {
-
-    },
     form: {
       contact: {
         $url: (url?: { hash?: string }) => ({ pathname: '/lab/form/contact' as const, hash: url?.hash })

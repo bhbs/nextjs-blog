@@ -6,6 +6,7 @@ import React from "react";
 import Date from "../components/date";
 import ImgPlaceHolder from "../components/imgPlaceHolder";
 import Layout, { siteTitle } from "../components/layout";
+import { pagesPath } from "../lib/$path";
 import { AllPostsData, getSortedPostsData } from "../lib/posts";
 import utilStyles from "../styles/utils.module.scss";
 
@@ -35,7 +36,7 @@ const Home: React.FC<Props> = ({ allPostsData }: Props): React.ReactElement => {
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
+              <Link href={pagesPath.posts._id(id).$url()}>
                 <a>{title}</a>
               </Link>
               <br />

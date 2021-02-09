@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
 import DarkModeSwitch from "../components/darkModeSwitch";
+import { pagesPath, staticPath } from "../lib/$path";
 import { existsGaId, GA_ID } from "../lib/gtag";
 import { GlobalContext } from "../pages/_app";
 import utilStyles from "../styles/utils.module.scss";
@@ -24,7 +25,7 @@ const Layout: React.FC<Props> = ({
   return (
     <div className={styles.container}>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href={staticPath.favicon_ico} />
         <meta name="description" content="diary" />
         <meta
           property="og:image"
@@ -62,7 +63,7 @@ const Layout: React.FC<Props> = ({
         {home ? (
           <>
             <Image
-              src="/images/profile.jpg"
+              src={staticPath.images.profile_jpg}
               width={200}
               height={200}
               className={`${styles.headerHomeImage} ${utilStyles.borderPaper}`}
@@ -72,10 +73,10 @@ const Layout: React.FC<Props> = ({
           </>
         ) : (
           <>
-            <Link href="/">
+            <Link href={pagesPath.$url()}>
               <a>
                 <Image
-                  src="/images/profile.jpg"
+                  src={staticPath.images.profile_jpg}
                   width={128}
                   height={128}
                   className={`${styles.headerHomeImage} ${utilStyles.borderPaper}`}
@@ -84,7 +85,7 @@ const Layout: React.FC<Props> = ({
               </a>
             </Link>
             <h2 className={utilStyles.headingLg}>
-              <Link href="/">
+              <Link href={pagesPath.$url()}>
                 <a className={utilStyles.colorInherit}>{name}</a>
               </Link>
             </h2>
@@ -94,18 +95,19 @@ const Layout: React.FC<Props> = ({
       <main>{children}</main>
       {!home && (
         <div className={styles.backToHome}>
-          <Link href="/">
+          <Link href={pagesPath.$url()}>
             <a>← Back to home</a>
           </Link>
         </div>
       )}
       <footer className={styles.footer}>
         <p>
-          source: <a href="https://github.com/bhbs/nextjs-blog">GitHub</a>
+          source:{" "}
+          <Link href="https://github.com/bhbs/nextjs-blog">
+            <a>GitHub</a>
+          </Link>
           <br />©{" "}
-          <span onClick={() => setGlobal(global + 1)}>
-            {2021 + global}
-          </span>{" "}
+          <span onClick={() => setGlobal(global + 1)}>{2021 + global}</span>{" "}
           taisei mima
         </p>
       </footer>
