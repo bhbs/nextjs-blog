@@ -30,13 +30,6 @@ export const pagesPath = {
         $url: (url?: { hash?: string }) => ({ pathname: '/lab/game/tictactoe' as const, hash: url?.hash })
       }
     },
-    identify: {
-
-// prettier-ignore
-    },
-    vite: {
-      $url: (url?: { hash?: string }) => ({ pathname: '/lab/vite' as const, hash: url?.hash })
-    },
     $url: (url?: { hash?: string }) => ({ pathname: '/lab' as const, hash: url?.hash })
   },
   posts: {

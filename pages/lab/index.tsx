@@ -6,28 +6,28 @@ import { pagesPath } from "lib/$path";
 const Lab: React.FC = (): React.ReactElement => {
   return (
     <Layout>
-      <section>
-        <p>
+      <ul>
+        <li>
           <Link href={pagesPath.lab.form.contact.$url()}>
             <a>form/contact</a>
           </Link>
-        </p>
-        <p>
+        </li>
+        <li>
           <Link href={pagesPath.lab.game.tictactoe.$url()}>
             <a>game/tictactoe</a>
           </Link>
-        </p>
-        <p>
+        </li>
+        <li>
           <Link href={pagesPath.lab.game.reversi.$url()}>
             <a>game/reversi</a>
           </Link>
-        </p>
-        <p>
+        </li>
+        <li>
           <Link href={pagesPath.lab.apps.aspect.$url()}>
             <a>apps/aspect</a>
           </Link>
-        </p>
-      </section>
+        </li>
+      </ul>
     </Layout>
   );
 };
