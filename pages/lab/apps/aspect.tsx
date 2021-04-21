@@ -1,7 +1,6 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import Layout from "../../../components/layout";
-import styles from "./aspect.module.scss";
 
 const Lab: React.FC = (): React.ReactElement => {
   const [result, setResult] = useState([0, 0]);
@@ -23,7 +22,7 @@ const Lab: React.FC = (): React.ReactElement => {
       <Head>
         <title>Aspect ratio calculator</title>
       </Head>
-      <section className={styles.aspect}>
+      <section>
         <p>
           <input
             type="number"

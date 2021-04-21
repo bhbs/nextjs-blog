@@ -13,9 +13,6 @@ export const pagesPath = {
       }
     },
     apps: {
-      aspect_module: {
-        $url: (url?: { hash?: string }) => ({ pathname: '/lab/apps/aspect.module' as const, hash: url?.hash })
-      },
       aspect: {
         $url: (url?: { hash?: string }) => ({ pathname: '/lab/apps/aspect' as const, hash: url?.hash })
       }
@@ -27,20 +24,15 @@ export const pagesPath = {
     },
     game: {
       reversi: {
-        index_module: {
-          $url: (url?: { hash?: string }) => ({ pathname: '/lab/game/reversi/index.module' as const, hash: url?.hash })
-        },
         $url: (url?: { hash?: string }) => ({ pathname: '/lab/game/reversi' as const, hash: url?.hash })
       },
       tictactoe: {
-        index_module: {
-          $url: (url?: { hash?: string }) => ({ pathname: '/lab/game/tictactoe/index.module' as const, hash: url?.hash })
-        },
         $url: (url?: { hash?: string }) => ({ pathname: '/lab/game/tictactoe' as const, hash: url?.hash })
       }
     },
     identify: {
 
+// prettier-ignore
     },
     vite: {
       $url: (url?: { hash?: string }) => ({ pathname: '/lab/vite' as const, hash: url?.hash })
@@ -55,8 +47,10 @@ export const pagesPath = {
   $url: (url?: { hash?: string }) => ({ pathname: '/' as const, hash: url?.hash })
 }
 
+// prettier-ignore
 export type PagesPath = typeof pagesPath
 
+// prettier-ignore
 export const staticPath = {
   favicon_ico: '/favicon.ico',
   images: {
@@ -65,4 +59,5 @@ export const staticPath = {
   sitemap_xml: '/sitemap.xml'
 } as const
 
+// prettier-ignore
 export type StaticPath = typeof staticPath

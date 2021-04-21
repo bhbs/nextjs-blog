@@ -1,16 +1,9 @@
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
-import DarkModeSwitch from "../components/darkModeSwitch";
 import { pagesPath, staticPath } from "../lib/$path";
 import { existsGaId, GA_ID } from "../lib/gtag";
 import { GlobalContext } from "../pages/_app";
-import utilStyles from "../styles/utils.module.scss";
-import styles from "./layout.module.scss";
-
-const name = "taisei mima";
-export const siteTitle = "mimaty blog";
 
 type Props = {
   children: React.ReactNode;
@@ -23,17 +16,17 @@ const Layout: React.FC<Props> = ({
 }: Props): React.ReactElement => {
   const { global, setGlobal } = useContext(GlobalContext);
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <link rel="icon" href={staticPath.favicon_ico} />
         <meta name="description" content="diary" />
         <meta
           property="og:image"
           content={`https://og-image.now.sh/${encodeURI(
-            siteTitle
+            "👀"
           )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
         />
-        <meta name="og:title" content={siteTitle} />
+        <meta name="og:title" content="👀" />
         <meta name="twitter:card" content="summary_large_image" />
 
         {/* Google Analytics */}
@@ -58,57 +51,27 @@ const Layout: React.FC<Props> = ({
           </>
         )}
       </Head>
-      <DarkModeSwitch />
-      <header className={styles.header}>
-        {home ? (
-          <>
-            <Image
-              src={staticPath.images.profile_jpg}
-              width={200}
-              height={200}
-              className={`${styles.headerHomeImage} ${utilStyles.borderPaper}`}
-              alt={name}
-            ></Image>
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </>
-        ) : (
-          <>
-            <Link href={pagesPath.$url()}>
-              <a>
-                <Image
-                  src={staticPath.images.profile_jpg}
-                  width={128}
-                  height={128}
-                  className={`${styles.headerHomeImage} ${utilStyles.borderPaper}`}
-                  alt={name}
-                ></Image>
-              </a>
-            </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href={pagesPath.$url()}>
-                <a className={utilStyles.colorInherit}>{name}</a>
-              </Link>
-            </h2>
-          </>
-        )}
+      <header>
+        <Link href={pagesPath.$url()}>
+          <a>Blog</a>
+        </Link>
+        <Link href={pagesPath.lab.$url()}>
+          <a>Lab</a>
+        </Link>
       </header>
       <main>{children}</main>
       {!home && (
-        <div className={styles.backToHome}>
+        <div>
           <Link href={pagesPath.$url()}>
             <a>← Back to home</a>
           </Link>
         </div>
       )}
-      <footer className={styles.footer}>
+      <footer>
         <p>
-          source:{" "}
-          <Link href="https://github.com/bhbs/nextjs-blog">
-            <a>GitHub</a>
-          </Link>
-          <br />©{" "}
-          <span onClick={() => setGlobal(global + 1)}>{2021 + global}</span>{" "}
-          taisei mima
+          <span>©</span>
+          <span onClick={() => setGlobal(global + 1)}> {2021 + global} </span>
+          <span>taisei mima</span>
         </p>
       </footer>
     </div>

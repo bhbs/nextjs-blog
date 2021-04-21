@@ -2,7 +2,6 @@ import { AppProps, NextRouter } from "next/dist/next-server/lib/router/router";
 import { useRouter } from "next/router";
 import React, { createContext, useEffect, useState } from "react";
 import * as gtag from "../lib/gtag";
-import "../styles/global.scss";
 
 export const GlobalContext = createContext(
   {} as {
