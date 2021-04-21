@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import Layout from "../../../components/layout";
+import Layout from "components/layout";
 
 const Lab: React.FC = (): React.ReactElement => {
   const [result, setResult] = useState([0, 0]);

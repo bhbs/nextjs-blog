@@ -1,15 +1,11 @@
-import Head from "next/head";
 import Link from "next/link";
 import React from "react";
-import Layout, { siteTitle } from "../../components/layout";
-import { pagesPath } from "../../lib/$path";
+import Layout from "components/layout";
+import { pagesPath } from "lib/$path";
 
 const Lab: React.FC = (): React.ReactElement => {
   return (
     <Layout>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
       <section>
         <p>
           <Link href={pagesPath.lab.form.contact.$url()}>

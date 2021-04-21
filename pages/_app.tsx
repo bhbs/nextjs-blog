@@ -1,7 +1,7 @@
+import { existsGaId, pageview } from "lib/gtag";
 import { AppProps, NextRouter } from "next/dist/next-server/lib/router/router";
 import { useRouter } from "next/router";
 import React, { createContext, useEffect, useState } from "react";
-import * as gtag from "../lib/gtag";
 
 export const GlobalContext = createContext(
   {} as {
@@ -16,10 +16,10 @@ const App: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   const [global, setGlobal] = useState(0);
 
   useEffect(() => {
-    if (!gtag.existsGaId) return;
+    if (!existsGaId) return;
 
     const handleRouteChange = (path: string): void => {
-      gtag.pageview(path);
+      pageview(path);
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);

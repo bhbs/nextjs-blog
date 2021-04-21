@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import * as nodemailer from "nodemailer";
+import { createTransport, SentMessageInfo } from "nodemailer";
 
 type Verification = {
   success?: true | false;
@@ -38,8 +38,8 @@ const siteVerify = async (token): Promise<Verification> =>
     }).toString(),
   }).then((response) => response.json());
 
-const sendText = async (info: Info): Promise<nodemailer.SentMessageInfo> => {
-  const transporter = nodemailer.createTransport({
+const sendText = async (info: Info): Promise<SentMessageInfo> => {
+  const transporter = createTransport({
     host: "smtp.gmail.com",
     port: 465,
     secure: true,

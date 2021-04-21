@@ -1,4 +1,4 @@
-import { Board, Coordinate, Player } from "../../../../pages/lab/game/reversi";
+import { Board, Coordinate, Player } from "pages/lab/game/reversi";
 
 export const reverse = (
   board: Board,

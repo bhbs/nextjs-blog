@@ -1,12 +1,9 @@
+import Layout from "components/lab/game/layout";
+import checkGame from "lib/lab/game/reversi/checkGame";
+import { database } from "lib/lab/game/reversi/firebase";
+import { getReversibleCells, reverse } from "lib/lab/game/reversi/reverse";
 import React, { useEffect, useState } from "react";
-import checkGame from "../../../../lib/lab/game/reversi/checkGame";
-import {
-  getReversibleCells,
-  reverse,
-} from "../../../../lib/lab/game/reversi/reverse";
 import styles from "./index.module.scss";
-import Layout from "../../../../components/lab/game/layout";
-import { database } from "../../../../lib/lab/game/reversi/firebase";
 
 export type GameData = {
   board: Board;

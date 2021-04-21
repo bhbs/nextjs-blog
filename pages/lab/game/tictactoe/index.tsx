@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../../../../components/lab/game/layout";
-import checkGame from "../../../../lib/lab/game/tictactoe/checkGame";
-import { database } from "../../../../lib/lab/game/tictactoe/firebase";
+import Layout from "components/lab/game/layout";
+import checkGame from "lib/lab/game/tictactoe/checkGame";
+import { database } from "lib/lab/game/tictactoe/firebase";
 import styles from "./index.module.scss";
 
 export type GameData = {

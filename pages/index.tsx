@@ -1,10 +1,10 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import Link from "next/link";
 import React from "react";
-import Date from "../components/date";
-import Layout from "../components/layout";
-import { pagesPath } from "../lib/$path";
-import { AllPostsData, getSortedPostsData } from "../lib/posts";
+import Date from "components/date";
+import Layout from "components/layout";
+import { pagesPath } from "lib/$path";
+import { AllPostsData, getSortedPostsData } from "lib/posts";
 
 type Props = {
   allPostsData: AllPostsData;

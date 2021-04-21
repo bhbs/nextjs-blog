@@ -1,4 +1,4 @@
-import { Board, Winner } from "../../../../pages/lab/game/reversi";
+import { Board, Winner } from "pages/lab/game/reversi";
 
 const player1 = 1;
 const player2 = 2;
