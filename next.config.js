@@ -3,6 +3,6 @@ module.exports = {
     GOOGLE_ANALYTICS_ID_FOR_BROWSER: process.env.GOOGLE_ANALYTICS_ID,
   },
   images: {
-    domains: ['grass-graph.moshimo.works'],
+    domains: ["grass-graph.moshimo.works"],
   },
-}
+};
