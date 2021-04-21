@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://blog.mimaty.com
+
+# Sitemaps
+Sitemap: https://blog.mimaty.com/sitemap.xml
