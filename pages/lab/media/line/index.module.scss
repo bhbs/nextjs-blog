@@ -1,0 +1,9 @@
+@keyframes back {
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.back {
+  animation: back 1s forwards;
+}
