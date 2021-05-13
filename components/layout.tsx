@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import React, { useContext } from "react";
-import { pagesPath, staticPath } from "lib/$path";
+import { pagesPath } from "lib/$path";
 import { existsGaId, GA_ID } from "lib/gtag";
 import { GlobalContext } from "pages/_app";
 
