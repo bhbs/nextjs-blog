@@ -8,6 +8,7 @@
     "dev:path": "pathpida --enableStatic --watch",
     "build": "pathpida --enableStatic && next-sitemap && next build",
     "start": "next start",
+    "lint": "eslint .",
     "prepare": "husky install"
   },
   "dependencies": {

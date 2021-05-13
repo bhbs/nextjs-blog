@@ -1,9 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiResponse } from "next";
 
-export default async (
-  req: NextApiRequest,
-  res: NextApiResponse
-): Promise<void> => {
+export default async (res: NextApiResponse): Promise<void> => {
   const operations = `
     query MyQuery {
       users {
@@ -24,7 +21,7 @@ to your service.
 
 Note: we only handle the first operation here
 */
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export async function fetchGraphQL(
   operationsDoc: string,
   operationName: string,
@@ -42,3 +39,4 @@ export async function fetchGraphQL(
     }),
   }).then((result) => result.json());
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */
