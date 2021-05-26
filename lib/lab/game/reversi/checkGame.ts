@@ -23,8 +23,6 @@ const checkWinner = (board: Board): Winner => {
   }
 };
 
-const checkGame = (board: Board, reversible: number[][]): Winner => {
+export const checkGame = (board: Board, reversible: number[][]): Winner => {
   return checkContinue(reversible) ? resultContinue : checkWinner(board);
 };
-
-export default checkGame;

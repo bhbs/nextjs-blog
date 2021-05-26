@@ -1,5 +1,5 @@
 import Layout from "components/lab/game/layout";
-import checkGame from "lib/lab/game/reversi/checkGame";
+import { checkGame } from "lib/lab/game/reversi/checkGame";
 import { database } from "lib/lab/game/reversi/firebase";
 import { getReversibleCells, reverse } from "lib/lab/game/reversi/reverse";
 import React, { useEffect, useState } from "react";
@@ -25,12 +25,12 @@ export type Coordinate = {
   y: number;
 };
 
-const initBoard: Board = [
+const initBoard = (): Board => [
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 1, 2, 0, 0, 0],
+  [0, 0, 0, 2, 1, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
@@ -44,8 +44,8 @@ const Game: React.FC = () => {
     GameData,
     React.Dispatch<React.SetStateAction<GameData>>
   ] = useState({
-    board: initBoard,
-    reversible: getReversibleCells(initBoard, 1),
+    board: initBoard(),
+    reversible: getReversibleCells(initBoard(), 1),
     player: 1,
     winner: 0,
   });
@@ -99,16 +99,7 @@ const Game: React.FC = () => {
   };
 
   const resetGame = () => {
-    const board: Board = [
-      [0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 1, 2, 0, 0, 0],
-      [0, 0, 0, 2, 1, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0],
-    ];
+    const board: Board = initBoard();
     pushGameData({
       board,
       reversible: getReversibleCells(board, 1),

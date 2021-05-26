@@ -1,4 +1,5 @@
 /* eslint-disable */
+// prettier-ignore
 export const pagesPath = {
   lab: {
     amp: {
@@ -35,6 +36,9 @@ export const pagesPath = {
         $url: (url?: { hash?: string }) => ({ pathname: '/lab/media/line' as const, hash: url?.hash })
       }
     },
+    vite: {
+      $url: (url?: { hash?: string }) => ({ pathname: '/lab/vite' as const, hash: url?.hash })
+    },
     $url: (url?: { hash?: string }) => ({ pathname: '/lab' as const, hash: url?.hash })
   },
   posts: {
@@ -50,7 +54,6 @@ export type PagesPath = typeof pagesPath
 
 // prettier-ignore
 export const staticPath = {
-  favicon_ico: '/favicon.ico',
   robots_txt: '/robots.txt',
   sitemap_xml: '/sitemap.xml'
 } as const
