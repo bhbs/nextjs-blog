@@ -13,10 +13,10 @@
   },
   "dependencies": {
     "date-fns": "^2.22.1",
-    "firebase": "^8.6.7",
+    "firebase": "^8.6.8",
     "gray-matter": "^4.0.3",
     "next": "^11.0.0",
-    "nodemailer": "^6.6.1",
+    "nodemailer": "^6.6.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-google-recaptcha-v3": "^1.9.4",
@@ -24,7 +24,7 @@
     "remark-html": "^13.0.1"
   },
   "devDependencies": {
-    "@types/node": "^15.12.2",
+    "@types/node": "^15.12.3",
     "@types/nodemailer": "^6.4.2",
     "@types/react": "^17.0.11",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
@@ -40,6 +40,6 @@
     "pathpida": "^0.15.2",
     "prettier": "2.3.1",
     "sass": "^1.35.1",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.4"
   }
 }
