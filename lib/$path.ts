@@ -24,6 +24,9 @@ export const pagesPath = {
       }
     },
     game: {
+      iporker: {
+        $url: (url?: { hash?: string }) => ({ pathname: '/lab/game/iporker' as const, hash: url?.hash })
+      },
       reversi: {
         $url: (url?: { hash?: string }) => ({ pathname: '/lab/game/reversi' as const, hash: url?.hash })
       },
