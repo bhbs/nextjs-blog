@@ -95,7 +95,7 @@ const sendMails = async (userData: {
     const othersData = { ...userData };
     delete othersData[key];
 
-    transporter.sendMail({
+    await transporter.sendMail({
       from: '"GAME MASTER"<dancingbumpkin@gmail.com>',
       to: user.mail,
       subject: user.name,
