@@ -16,7 +16,9 @@ type UserData = {
 
 type Info = {
   token: string;
-  userData: UserData[];
+  userData: {
+    [id: string]: UserData;
+  };
 };
 
 export default async (
@@ -26,20 +28,22 @@ export default async (
   const info: Info = JSON.parse(req.body);
   const token = info.token;
 
-  if (!token) return res.status(403).json("BOT?🤖");
+  if (!token) return res.status(403).json("不正なアクセス");
 
   const verification = await siteVerify(token);
 
-  if (!verification.success) return res.status(403).json("invalid token 🤖");
+  if (!verification.success) return res.status(403).json("トークンが不正です");
 
   const userData = info.userData;
-  const wordPool = ["banana", "apple", "cake"];
+  const wordPool = ["banana", "apple", "orange", "peach"];
 
   const userDataWithWords = giveWords(userData, wordPool);
 
   await sendMails(userDataWithWords);
 
-  return res.status(200).json("DONE");
+  return res
+    .status(200)
+    .json("メールの送信が完了しました。ゲームを開始してください。");
 };
 
 const siteVerify = async (token: string): Promise<Verification> =>
@@ -52,13 +56,17 @@ const siteVerify = async (token: string): Promise<Verification> =>
     }).toString(),
   }).then((response) => response.json());
 
-const giveWords = (objArr: UserData[], wordPool: string[]) => {
-  return objArr.map((userData: UserData) => {
-    return {
-      ...userData,
+const giveWords = (
+  userData: { [id: string]: UserData },
+  wordPool: string[]
+) => {
+  for (const [key, value] of Object.entries(userData)) {
+    userData[key] = {
+      ...value,
       word: getRandomWords(wordPool),
     };
-  });
+  }
+  return userData;
 };
 
 const getRandomWords = (wordPool: string[]) => {
@@ -70,7 +78,9 @@ const getRandomInt = (max: number) => {
   return Math.floor(Math.random() * max);
 };
 
-const sendMails = async (userData: UserData[]): Promise<SentMessageInfo> => {
+const sendMails = async (userData: {
+  [id: string]: UserData;
+}): Promise<SentMessageInfo> => {
   const transporter = createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -81,18 +91,17 @@ const sendMails = async (userData: UserData[]): Promise<SentMessageInfo> => {
     },
   });
 
-  userData.forEach((user) => {
-    const othersData = userData.filter((_user) => {
-      return _user.mail !== user.mail;
-    });
+  for (const [key, user] of Object.entries(userData)) {
+    const othersData = { ...userData };
+    delete othersData[key];
 
     transporter.sendMail({
       from: '"GAME MASTER"<dancingbumpkin@gmail.com>',
       to: user.mail,
       subject: user.name,
-      text: othersData
+      text: Object.values(othersData)
         .map((_user) => `${_user.name} - ${_user.word}`)
         .join("\n"),
     });
-  });
+  }
 };
